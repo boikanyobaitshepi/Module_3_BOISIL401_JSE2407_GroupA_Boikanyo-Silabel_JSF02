@@ -1,7 +1,7 @@
 <script>
   import {onMount} from 'svelte';
-  import ProductList from './component/ProductList.svelte';
-  import Cart from './component/Cart.svelte';
+  import ProductList from './src/components/ProductList.svelte';
+  import Cart from './src/components/Cart.svelte';
 
   let categories = [];
 
