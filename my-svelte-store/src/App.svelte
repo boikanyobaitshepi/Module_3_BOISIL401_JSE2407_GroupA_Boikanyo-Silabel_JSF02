@@ -23,3 +23,13 @@
     <Cart />
   </div>
 </main>
+
+<style>
+  .store-container {
+    display: flex;
+    flex-direction: space-between;
+  }
+  .categories {
+    width: 20%;
+    }
+</style>
