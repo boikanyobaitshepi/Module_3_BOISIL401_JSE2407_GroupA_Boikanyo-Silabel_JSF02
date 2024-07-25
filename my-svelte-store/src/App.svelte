@@ -10,3 +10,16 @@
     categories = await response.json();
   });
 </script>
+<main>
+  <h1>My Svelte Store</h1>
+  <div class="store-container">
+    <div class="categories">
+      <h2>Categories</h2>
+      {#each categories as category}
+        <button>{category}</button>
+      {/each}
+    </div>
+    <ProductList />
+    <Cart />
+  </div>
+</main>
