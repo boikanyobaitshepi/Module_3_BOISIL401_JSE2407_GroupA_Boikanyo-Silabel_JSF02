@@ -11,7 +11,7 @@
   });
 </script>
 <main>
-  <h1>My Svelte Store</h1>
+  <h1>Smile Store</h1>
   <div class="store-container">
     <div class="categories">
       <h2>Categories</h2>
