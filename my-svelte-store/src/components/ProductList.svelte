@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { Link } from "svelte-routing";
+    import {cart, wishlist} from './stores/shopStore'
     import Loading from './Loading.svelte';
   
     let products = [];
@@ -40,6 +41,14 @@
       selectedCategory = '';
       sortOrder = 'default';
     }
+
+     function addToCart(product) {
+    cart.addItem(product);
+  }
+
+  function addToWishlist(product) {
+    wishlist.addItem(product);
+  }
   </script>
   
   {#if loading}
@@ -70,6 +79,8 @@
               <p>Price: ${product.price}</p>
               <p>Category: {product.category}</p>
             </Link>
+            <button on:click={() => addToCart(product)}>Add to Cart</button>
+            <button on:click={() => addToWishlist(product)}>Add to Wishlist</button>
           </div>
         {/each}
       </div>
@@ -91,4 +102,15 @@
       height: 200px;
       object-fit: contain;
     }
+    .product-card button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .product-card button:last-child {
+    background-color: #008CBA;
+  }
   </style>
