@@ -15,9 +15,11 @@
     selectedCategory = category;
   }
 </script>
-
 <main>
-  <h1>My Svelte Store</h1>
+<div class="header">
+  <h1>SmileShop</h1>
+  <img src="/store image.jpg" alt="Store Logo" class="logo">
+  </div>
   <div class="store-container">
     <div class="categories">
       <h2>Categories</h2>
@@ -38,5 +40,15 @@
   }
   .categories {
     width: 20%;
+  }
+  .logo {
+    width: 50px;
+    height: 50px; 
+    border-radius: 50%;  
+    object-fit: cover; 
+    margin-left: 1rem; 
+  }
+  h1 {
+    margin-right: 1rem; 
   }
 </style>
