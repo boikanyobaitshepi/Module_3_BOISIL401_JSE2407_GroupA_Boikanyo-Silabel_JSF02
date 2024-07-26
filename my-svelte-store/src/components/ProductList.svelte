@@ -1,50 +1,94 @@
 <script>
     import { onMount } from 'svelte';
-    import { cart } from '../stores/cartStore.js';
-  
-    export let selectedCategory = null;
+    import { Link } from "svelte-routing";
+    import Loading from './Loading.svelte';
   
     let products = [];
+    let categories = [];
+    let loading = true;
+    let selectedCategory = '';
+    let sortOrder = 'default';
   
-    $: fetchProducts(selectedCategory);
+    onMount(async () => {
+      await Promise.all([fetchProducts(), fetchCategories()]);
+      loading = false;
+    });
   
-    async function fetchProducts(category) {
-      let url = 'https://fakestoreapi.com/products';
-      if (category) {
-        url += `/category/${category}`;
-      }
-      const response = await fetch(url);
+    async function fetchProducts() {
+      const response = await fetch('https://fakestoreapi.com/products');
       products = await response.json();
     }
   
-    function addToCart(product) {
-      cart.addItem(product);
+    async function fetchCategories() {
+      const response = await fetch('https://fakestoreapi.com/products/categories');
+      categories = await response.json();
+    }
+  
+    $: filteredProducts = selectedCategory 
+      ? products.filter(p => p.category === selectedCategory)
+      : products;
+  
+    $: sortedProducts = sortProducts(filteredProducts, sortOrder);
+  
+    function sortProducts(prods, order) {
+      if (order === 'lowest') return [...prods].sort((a, b) => a.price - b.price);
+      if (order === 'highest') return [...prods].sort((a, b) => b.price - a.price);
+      return prods;
+    }
+  
+    function resetFilters() {
+      selectedCategory = '';
+      sortOrder = 'default';
     }
   </script>
   
-  <div class="product-list">
-    <h2>Products {selectedCategory ? `in ${selectedCategory}` : ''}</h2>
-    {#each products as product}
-      <div class="product">
-        <img src={product.image} alt={product.title} />
-        <h3>{product.title}</h3>
-        <p>${product.price.toFixed(2)}</p>
-        <button on:click={() => addToCart(product)}>Add to Cart</button>
+  {#if loading}
+    <Loading />
+  {:else}
+    <div>
+      <select bind:value={selectedCategory}>
+        <option value="">All Categories</option>
+        {#each categories as category}
+          <option value={category}>{category}</option>
+        {/each}
+      </select>
+  
+      <select bind:value={sortOrder}>
+        <option value="default">Default</option>
+        <option value="lowest">Lowest Price</option>
+        <option value="highest">Highest Price</option>
+      </select>
+  
+      <button on:click={resetFilters}>Reset Filters</button>
+  
+      <div class="product-grid">
+        {#each sortedProducts as product}
+          <div class="product-card">
+            <Link to={`/product/${product.id}`}>
+              <img src={product.image} alt={product.title} />
+              <h3>{product.title}</h3>
+              <p>Price: ${product.price}</p>
+              <p>Category: {product.category}</p>
+            </Link>
+          </div>
+        {/each}
       </div>
-    {/each}
-  </div>
+    </div>
+  {/if}
   
   <style>
-    .product-list {
-      width: 60%;
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
     }
-    .product {
+    .product-card {
       border: 1px solid #ddd;
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 1rem;
     }
-    img {
-      max-width: 100px;
-      max-height: 100px;
+    .product-card img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: contain;
     }
   </style>
