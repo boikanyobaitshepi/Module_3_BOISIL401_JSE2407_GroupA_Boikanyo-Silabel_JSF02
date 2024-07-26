@@ -1,7 +1,7 @@
 <script>
   import { Router, Link, Route } from "svelte-routing";
-  import ProductList from "./ProductList.svelte";
-  import ProductDetail from "./ProductDetail.svelte";
+  import ProductList from "./src/components/ProductList.svelte";
+  import ProductDetail from "./src/components/ProductDetail.svelte";
 
   export let url = "";
 </script>
