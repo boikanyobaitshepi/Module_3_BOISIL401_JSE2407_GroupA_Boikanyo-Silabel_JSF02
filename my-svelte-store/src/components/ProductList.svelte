@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import { onMount } from 'svelte';
     import { Link } from "svelte-routing";
     import {cart, wishlist} from './stores/shopStore'
@@ -117,4 +117,4 @@
     text-decoration: none;
     color: inherit;
   }
-  </style>
+  </style> -->

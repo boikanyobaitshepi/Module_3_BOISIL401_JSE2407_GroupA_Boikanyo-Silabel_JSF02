@@ -1,37 +1,59 @@
 <script>
-  import { cart } from '../stores/cartStore.js';
+    import { cart, removeFromCart } from '../stores.js';
 
-  function removeFromCart(item) {
-    cart.removeItem(item.id);
-  }
+    function increaseQuantity(item) {
+        $cart = $cart.map(i => i.id === item.id ? {...i, quantity: i.quantity + 1} : i);
+    }
 
-  $: total = $cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    function decreaseQuantity(item) {
+        $cart = $cart.map(i => i.id === item.id && i.quantity > 1 ? {...i, quantity: i.quantity - 1} : i);
+    }
+
+    $: subtotal = $cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    $: tax = subtotal * 0.1;
+    $: total = subtotal + tax;
 </script>
 
-<div class="cart">
-  <h2>Cart</h2>
-  {#if $cart.length === 0}
-    <p>Your cart is empty</p>
-  {:else}
-    {#each $cart as item}
-      <div class="cart-item">
-        <span>{item.title} - ${item.price.toFixed(2)} x {item.quantity}</span>
-        <button on:click={() => removeFromCart(item)}>Remove</button>
-      </div>
-    {/each}
-    <p>Total: ${total.toFixed(2)}</p>
-  {/if}
-</div>
+<h1 class="text-3xl font-bold mb-6">Your Cart</h1>
 
-<style>
-  .cart {
-    width: 35%;
-    border: 1px solid #ddd;
-    padding: 10px;
-  }
-  .cart-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-</style>
+{#if $cart.length === 0}
+    <div class="text-center py-8">
+        <p class="text-xl text-gray-600">Your cart is empty</p>
+        <button class="inline-block mt-4 bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">Continue Shopping</button>
+    </div>
+{:else}
+    <div class="space-y-4">
+        {#each $cart as item (item.id)}
+            <div class="flex items-center justify-between border-b pb-4">
+                <div class="flex items-center space-x-4">
+                    <img src={item.image} alt={item.title} class="w-16 h-16 object-contain">
+                    <div>
+                        <h3 class="font-semibold">{item.title}</h3>
+                        <p class="text-gray-600">${item.price.toFixed(2)}</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button on:click={() => decreaseQuantity(item)} class="px-2 py-1 bg-gray-200 rounded">-</button>
+                    <span>{item.quantity}</span>
+                    <button on:click={() => increaseQuantity(item)} class="px-2 py-1 bg-gray-200 rounded">+</button>
+                    <button on:click={() => removeFromCart(item)} class="ml-4 text-red-500 hover:text-red-700">Remove</button>
+                </div>
+            </div>
+        {/each}
+    </div>
+    <div class="mt-8">
+        <div class="flex justify-between py-2">
+            <span>Subtotal:</span>
+            <span>${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="flex justify-between py-2">
+            <span>Tax (10%):</span>
+            <span>${tax.toFixed(2)}</span>
+        </div>
+        <div class="flex justify-between py-2 font-bold">
+            <span>Total:</span>
+            <span>${total.toFixed(2)}</span>
+        </div>
+        <button class="mt-4 w-full bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700">Proceed to Checkout</button>
+    </div>
+{/if}
