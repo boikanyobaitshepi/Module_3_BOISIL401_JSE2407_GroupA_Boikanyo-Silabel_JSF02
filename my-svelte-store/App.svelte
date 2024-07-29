@@ -7,6 +7,7 @@
 </script>
 
 <Router {url}>
+  
   <nav>
     <Link to="/">Home</Link>
   </nav>

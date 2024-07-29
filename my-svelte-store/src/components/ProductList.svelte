@@ -113,4 +113,8 @@
   .product-card button:last-child {
     background-color: #008CBA;
   }
+  .product-card a {
+    text-decoration: none;
+    color: inherit;
+  }
   </style>
