@@ -26,17 +26,14 @@
     }
     </script>
     
-    
-<header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg">
-    <div class="container mx-auto px-4 py-6">
-      <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-          <img src="store image.jpg" alt="Store Logo" class="w-12 h-12 rounded-full shadow-md">
-          <h1 class="text-2xl font-bold tracking-wider">Your Store Name</h1>
-        </div>
-        <nav>
-          <ul class="flex space-x-6 items-center">
-            <li>
+    <header class="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+              <img src="store image.jpg" alt="Store Logo" class="w-12 h-12 rounded-full shadow-md">
+              <h1 class="text-2xl font-bold tracking-wider">Your Store Name</h1>
+            </div>
+            <nav class="flex items-center space-x-6">
               <button 
                 on:click={() => setPage('products')} 
                 class="flex items-center hover:text-yellow-300 transition-colors duration-200 {currentPage === 'products' ? 'text-yellow-300' : ''}"
@@ -46,8 +43,6 @@
                 </svg>
                 Home
               </button>
-            </li>
-            <li>
               <button 
                 on:click={() => setPage('cart')} 
                 class="flex items-center hover:text-yellow-300 transition-colors duration-200 {currentPage === 'cart' ? 'text-yellow-300' : ''}"
@@ -57,19 +52,38 @@
                 </svg>
                 Cart ({$cart.length})
               </button>
-            </li>
-            <li>
               <button 
-                class="flex items-center hover:text-yellow-300 transition-colors duration-200"
+                on:click={() => setPage('wishlist')} 
+                class="flex items-center hover:text-yellow-300 transition-colors duration-200 {currentPage === 'wishlist' ? 'text-yellow-300' : ''}"
               >
                 <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                 </svg>
                 Wishlist ({$wishlist.length})
               </button>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
+            </nav>
+          </div>
+        </div>
+      </header>
+      
+      <style>
+        header {
+          background: linear-gradient(to right, #7e5bef, #f06d8e, #fa6b5c);
+          color: white;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: inherit;
+          display: flex;
+          align-items: center;
+        }
+        button:hover {
+          color: #ffc107;
+        }
+        img {
+          border-radius: 50%;
+        }
+      </style>

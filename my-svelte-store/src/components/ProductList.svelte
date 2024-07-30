@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { Link } from "svelte-routing";
-  // import {cart, wishlist} from './stores/shopStore'
   import Loading from './Loading.svelte';
+  import { cart, wishlist } from '../store'; // Ensure correct import path
 
   let products = [];
   let categories = [];
@@ -42,13 +42,29 @@
     sortOrder = 'default';
   }
 
-   function addToCart(product) {
-  cart.addItem(product);
-}
+  function addToCart(product) {
+    cart.update(items => {
+      const existingItem = items.find(item => item.id === product.id);
+      if (existingItem) {
+        return items.map(item => 
+          item.id === product.id 
+            ? {...item, quantity: item.quantity + 1}
+            : item
+        );
+      }
+      return [...items, {...product, quantity: 1}];
+    });
+  }
 
-function addToWishlist(product) {
-  wishlist.addItem(product);
-}
+  function addToWishlist(product) {
+    wishlist.update(items => {
+      const index = items.findIndex(item => item.id === product.id);
+      if (index === -1) {
+        return [...items, product];
+      }
+      return items.filter((_, i) => i !== index);
+    });
+  }
 </script>
 
 {#if loading}
@@ -80,7 +96,7 @@ function addToWishlist(product) {
             <p>Category: {product.category}</p>
           </Link>
           <button on:click={() => addToCart(product)}>Add to Cart</button>
-          <button on:click={() => addToWishlist(product)}>Add to Wishlist</button>
+          <!-- <button on:click={() => addToWishlist(product)}>Add to Wishlist</button> -->
         </div>
       {/each}
     </div>
@@ -103,18 +119,18 @@ function addToWishlist(product) {
     object-fit: contain;
   }
   .product-card button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.product-card button:last-child {
-  background-color: #008CBA;
-}
-.product-card a {
-  text-decoration: none;
-  color: inherit;
-}
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .product-card button:last-child {
+    background-color: #008CBA;
+  }
+  .product-card a {
+    text-decoration: none;
+    color: inherit;
+  }
 </style>
