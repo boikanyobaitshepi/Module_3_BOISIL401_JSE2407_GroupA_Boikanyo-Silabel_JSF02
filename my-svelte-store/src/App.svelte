@@ -13,7 +13,7 @@
 
 <Router {url}>
   <nav>
-    <Link to="/">Home</Link>
+    <!-- <Link to="/">Home</Link> -->
   </nav>
 
   <Route path="/" component={ProductList} />
