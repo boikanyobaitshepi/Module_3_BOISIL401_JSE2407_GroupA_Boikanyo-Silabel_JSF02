@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { Link } from "svelte-routing";
   import Loading from './Loading.svelte';
-  import { cart, wishlist } from '../store'; // Ensure correct import path
+  import { cart, wishlist } from '../store'; 
 
   let products = [];
   let categories = [];
@@ -96,7 +96,7 @@
             <p>Category: {product.category}</p>
           </Link>
           <button on:click={() => addToCart(product)}>Add to Cart</button>
-          <!-- <button on:click={() => addToWishlist(product)}>Add to Wishlist</button> -->
+          <button on:click={() => addToWishlist(product)}>Add to Wishlist</button>
         </div>
       {/each}
     </div>
