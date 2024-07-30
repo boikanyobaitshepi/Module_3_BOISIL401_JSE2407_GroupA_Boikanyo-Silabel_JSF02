@@ -1,4 +1,6 @@
 <script>
+
+
     import { cart, removeFromCart } from '../store';
 
     function increaseQuantity(item) {

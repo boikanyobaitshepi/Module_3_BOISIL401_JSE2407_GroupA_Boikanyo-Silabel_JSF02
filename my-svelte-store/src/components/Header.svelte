@@ -31,7 +31,7 @@
     <div class="container mx-auto px-4 py-6">
       <div class="flex justify-between items-center">
         <div class="flex items-center space-x-4">
-          <img src="/path/to/your/logo.png" alt="Store Logo" class="w-12 h-12 rounded-full shadow-md">
+          <img src="store image.jpg" alt="Store Logo" class="w-12 h-12 rounded-full shadow-md">
           <h1 class="text-2xl font-bold tracking-wider">Your Store Name</h1>
         </div>
         <nav>
