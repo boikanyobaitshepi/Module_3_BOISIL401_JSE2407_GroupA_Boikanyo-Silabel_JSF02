@@ -14,14 +14,14 @@
      */
     
     /** @type {Props} */
-    // export let currentPage;
+    export let currentPage;
     
     /**
      * Sets the current page.
      * @param {string} page - The page to set as current.
      */
     function setPage(page) {
-        // currentPage = page;
+        currentPage = page;
     }
     </script>
     
@@ -29,8 +29,7 @@
         <div class="container">
           <div class="header-content">
             <div class="logo-container">
-              <img src="store-image.jpg" alt="Store Logo" class="logo">
-              <h1>Your Store Name</h1>
+              <img src="store image.jpg" alt="Store Logo" class="logo">
             </div>
             <nav>
               <button 

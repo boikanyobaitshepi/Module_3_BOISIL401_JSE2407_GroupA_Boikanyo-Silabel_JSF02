@@ -1,6 +1,4 @@
 <script>
-// @ts-nocheck
-
   import { Router, Link, Route } from 'svelte-routing';
   import ProductList from './components/ProductList.svelte';
   import ProductDetail from './components/ProductDetail.svelte';
@@ -13,7 +11,7 @@
 
 <Router {url}>
   <nav>
-    <!-- <Link to="/">Home</Link> -->
+    
   </nav>
 
   <Route path="/" component={ProductList} />
