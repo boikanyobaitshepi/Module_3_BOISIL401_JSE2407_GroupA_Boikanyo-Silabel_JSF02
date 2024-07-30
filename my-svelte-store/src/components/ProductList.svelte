@@ -1,8 +1,4 @@
 <script>
-// @ts-nocheck
-
-
-
     import { onMount } from 'svelte';
     import { Link } from "svelte-routing";
     import {cart, wishlist} from '../store'
@@ -91,7 +87,7 @@
     </div>
   {/if}
   
-  <!-- <style>
+  <style>
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -121,4 +117,4 @@
     text-decoration: none;
     color: inherit;
   }
-  </style> -->
+  </style>

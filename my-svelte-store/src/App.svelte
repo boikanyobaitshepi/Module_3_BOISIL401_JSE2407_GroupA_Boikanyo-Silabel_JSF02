@@ -8,9 +8,9 @@
   
   import { onMount } from 'svelte';
   import Header from './components/Header.svelte';
-  import Products from './components/Products.svelte';
+  // import Products from './components/Products.svelte';
   import Cart from './components/Cart.svelte';
-  import ProductModal from './components/ProductModal.svelte';
+  // import ProductModal from './components/ProductModal.svelte';
   import { products } from './store';
   import Loading from './components/Loading.svelte';
   import ProductDetail from './components/ProductDetail.svelte';
@@ -63,7 +63,7 @@
   
   <main class="container mx-auto p-4">
     {#if currentPage === 'products'}
-      <Products on:openModal={openProductModal} />
+      <ProductList on:openModal={openProductModal} />
     {:else if currentPage === 'cart'}
       <Cart />
     {/if}
