@@ -1,12 +1,10 @@
-<script>
+<!-- <script>
     import { addToCart, toggleWishlist, wishlist } from '../store';
     export let product;
 
     $: isInWishlist = $wishlist.some(item => item.id === product.id);
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" on:click|self>
     <div class="bg-white p-6 rounded-lg max-w-2xl w-full relative">
         <button on:click class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">&times;</button>
@@ -44,4 +42,4 @@
             </button>
         </div>
     </div>
-</div>
+</div> -->

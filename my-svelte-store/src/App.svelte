@@ -13,6 +13,8 @@
   import ProductModal from './components/ProductModal.svelte';
   import { products } from './store';
   import Loading from './components/Loading.svelte';
+  import ProductDetail from './components/ProductDetail.svelte';
+  import ProductList from './components/ProductList.svelte';
   
   /** @type {string} */
   let currentPage = 'products';
@@ -80,8 +82,8 @@
     </div>
   {/if}
   
-  <style global>
+  <!-- <style global>
     @import 'tailwindcss/base';
     @import 'tailwindcss/components';
     @import 'tailwindcss/utilities';
-  </style>
+  </style> -->

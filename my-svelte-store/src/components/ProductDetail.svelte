@@ -1,4 +1,6 @@
-<!-- <script>
+<script>
+
+
     import { onMount } from 'svelte';
     import { Link } from "svelte-routing";
     import {cart, wishlist} from '../store'
@@ -62,4 +64,4 @@
   .product-detail button:last-child {
     background-color: #008CBA;
   }
-  </style> -->
+  </style>

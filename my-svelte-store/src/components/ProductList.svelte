@@ -1,7 +1,11 @@
-<!-- <script>
+<script>
+// @ts-nocheck
+
+
+
     import { onMount } from 'svelte';
     import { Link } from "svelte-routing";
-    import {cart, wishlist} from './stores/shopStore'
+    import {cart, wishlist} from '../store'
     import Loading from './Loading.svelte';
   
     let products = [];
@@ -87,7 +91,7 @@
     </div>
   {/if}
   
-  <style>
+  <!-- <style>
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
