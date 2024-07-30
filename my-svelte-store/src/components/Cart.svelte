@@ -1,5 +1,5 @@
 <script>
-    import { cart, removeFromCart } from '../stores.js';
+    import { cart, removeFromCart } from '../store';
 
     function increaseQuantity(item) {
         $cart = $cart.map(i => i.id === item.id ? {...i, quantity: i.quantity + 1} : i);

@@ -1,15 +1,14 @@
 <script>
+// @ts-nocheck
+
+
+
   import { onMount } from 'svelte';
-  // @ts-ignore
   import Header from './components/Header.svelte';
-  // @ts-ignore
   import Products from './components/Products.svelte';
-  // @ts-ignore
   import Cart from './components/Cart.svelte';
-  // @ts-ignore
   import ProductModal from './components/ProductModal.svelte';
-  // @ts-ignore
-  import { products } from './stores.js';
+  import { products } from './store';
 
   let currentPage = 'products';
   let showProductModal = false;

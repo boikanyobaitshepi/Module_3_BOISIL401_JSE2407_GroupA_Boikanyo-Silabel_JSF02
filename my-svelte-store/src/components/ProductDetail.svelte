@@ -1,7 +1,7 @@
-<script>
+<!-- <script>
     import { onMount } from 'svelte';
     import { Link } from "svelte-routing";
-    import {cart, wishlist} from '../../stores/shopStore'
+    import {cart, wishlist} from '../store'
     import Loading from './Loading.svelte';
   
     export let id;
@@ -15,12 +15,12 @@
     });
 
     function addToCart(product) {
-    // @ts-ignore
+    
     cart.addItem(product);
   }
 
   function addToWishlist(product) {
-    // @ts-ignore
+    
     wishlist.addItem(product);
   }
   </script>
@@ -62,4 +62,4 @@
   .product-detail button:last-child {
     background-color: #008CBA;
   }
-  </style>
+  </style> -->

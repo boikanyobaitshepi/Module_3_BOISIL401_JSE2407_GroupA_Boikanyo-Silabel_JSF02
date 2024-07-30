@@ -1,5 +1,5 @@
 <script>
-    import { addToCart, toggleWishlist, wishlist } from '../stores.js';
+    import { addToCart, toggleWishlist, wishlist } from '../store';
     export let product;
 
     $: isInWishlist = $wishlist.some(item => item.id === product.id);

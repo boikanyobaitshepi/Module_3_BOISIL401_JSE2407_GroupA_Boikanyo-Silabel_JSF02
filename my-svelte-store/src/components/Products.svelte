@@ -1,5 +1,5 @@
 <script>
-    import { products, addToCart, toggleWishlist } from '';
+    import { products, addToCart, toggleWishlist } from '../store';
     import { createEventDispatcher } from 'svelte';
 
     const dispatch = createEventDispatcher();
